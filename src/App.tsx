@@ -1,25 +1,26 @@
-import React, { useState } from 'react';
-import { useLoveLove } from './state/lovelove';
+import React from 'react';
+import { useSong } from './state/song';
 
 function App(): React.ReactElement {
-	const [someOne] = useState(['iu', 'rose', 'yoona', 'ryeo won']);
-	const myLove = useLoveLove((state) => state.myLove);
-	const changeMyLove = useLoveLove((state) => state.changeMyLove);
+	const songs = useSong((state) => state.songs);
+	const addSong = useSong((state) => state.addSong);
 
 	// get all states
-	console.log(useLoveLove());
+	console.log(useSong());
 
 	return (
 		<div>
 			<h1>Hello it App 1</h1>
 			<hr />
-			<p>my love is {myLove} ❤️</p>
-			<button
-				onClick={() =>
-					changeMyLove(someOne[Math.floor(Math.random() * someOne.length)])
-				}
-			>
-				change
+			<ul>
+				{songs.map((song) => (
+					<li key={song.name}>
+						{song.name} - {song.artist}
+					</li>
+				))}
+			</ul>
+			<button onClick={() => addSong({ name: 'weekend', artist: 'taeyeon' })}>
+				add song
 			</button>
 		</div>
 	);
