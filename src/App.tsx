@@ -6,6 +6,7 @@ function App(): React.ReactElement {
 	const addSong = useSong((state) => state.addSong);
 
 	// get all states
+	// const { addSong, songs } = useSong();
 	console.log(useSong());
 
 	return (
